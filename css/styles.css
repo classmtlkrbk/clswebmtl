@@ -4,6 +4,7 @@
   --dark:#2B2A29;
   --bg:#f7f7f8;
   --maxw:1000px;
+  --band-height:48px; /* default band height reserve */
 }
 *{box-sizing:border-box}
 body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; color:#222; background:var(--bg); line-height:1.5}
@@ -13,11 +14,21 @@ body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Rob
 .tagline{margin:0.25rem 0 0; color:#d1d5db; font-size:0.9rem}
 .cta{display:inline-block; background:var(--accent); color:#fff; padding:0.45rem 0.9rem; border-radius:6px; text-decoration:none}
 .header-inner{display:flex; align-items:center; justify-content:space-between}
-.hero{position:relative; margin-top:1rem}
-.hero img{width:100%; height:420px; object-fit:cover; display:block; filter:brightness(0.45); transition:transform .6s ease}
-.hero:hover img{transform:scale(1.02)}
-.hero-overlay{position:absolute; left:0; right:0; top:0; bottom:0; display:flex; align-items:center; color:#fff}
-.hero-content{max-width:680px; padding:3rem 1rem}
+.hero-section{position:relative; margin-top:1rem}
+/* Desktop: overlay text on image */
+@media (min-width:768px) {
+  .hero-content-wrapper{position:absolute; left:0; right:0; top:0; bottom:0; display:flex; align-items:center; color:#fff; z-index:20}
+  .hero-image img{filter:brightness(0.45)}
+  .hero-section:hover .hero-image img{transform:scale(1.02)}
+}
+/* Mobile: dark band above image */
+@media (max-width:767px) {
+  .hero-content-wrapper{background:var(--dark); padding:1.5rem 0; color:#fff}
+  .hero-image{margin-top:0}
+  .hero-content{padding:0}
+}
+.hero-image img{width:100%; height:420px; object-fit:cover; display:block; transition:transform .6s ease}
+.hero-content{max-width:680px}
 .hero-content h1{font-size:2rem; margin:0 0 0.5rem; line-height:1.1}
 .hero-content .sub{color:#f3f4f6; margin-bottom:1rem}
 .hero-ctas{display:flex; gap:0.75rem}
@@ -243,4 +254,87 @@ body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Rob
   .hero-content h1{font-size:1.25rem}
   .hero-content{padding:1.5rem 0.5rem}
   .final-cta-inner{flex-direction:column; align-items:flex-start}
+}
+
+/* Mobile specific improvements */
+@media (max-width:480px) {
+  :root{--maxw:100%;}
+  .container{padding:0.75rem}
+  .hero-image img{height:160px}
+  .hero-content h1{font-size:1.05rem; margin-bottom:0.4rem}
+  .hero-content .sub{font-size:0.95rem; margin-bottom:0.75rem}
+  .hero-ctas{flex-direction:column; gap:0.5rem}
+  .hero-content-wrapper{padding:1.25rem 0}
+  .logo-wrap{width:90%; aspect-ratio:3.8/1}
+  .band-inner{padding:0.6rem}
+  .services { padding: 2rem 0; }
+  .services-grid { gap: 0.9rem; }
+  .service-card { padding: 1rem; }
+  .service-card .icon { width:48px; height:48px }
+  .gallery-grid img{height:120px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* Floating CTA */
+  .floating-cta{position:fixed; right:14px; bottom:18px; background:var(--accent); color:#fff; padding:12px 14px; border-radius:999px; box-shadow:0 8px 20px rgba(0,0,0,0.2); z-index:9999; text-decoration:none; font-weight:700; font-size:15px}
+
+  /* Make touch targets slightly larger */
+  .cta, .band-cta, .service-card .more, .contact-form button{padding:12px 14px}
+
+  /* FAQ adjustments */
+  .faq-q{padding:0.85rem}
+  .faq-a{padding:0.5rem 0.85rem 1rem}
+}
+
+/* Ensure brand band sits above hero on small screens and avoid overlap */
+.brand-band{position:relative; z-index:30}
+.hero{position:relative; z-index:10}
+
+@media (max-width:380px) {
+  /* push hero content downward so it doesn't overlap the band */
+  .hero-overlay{align-items:flex-end}
+  .hero-content{padding:0.75rem 0.6rem 1.4rem; margin-top:calc(var(--band-height) + 6px)}
+  .hero-content h1{font-size:16px; line-height:1.15}
+  .hero-content .sub{font-size:13px}
+  /* reduce hero overlay full coverage to allow band to remain visible */
+  .hero-overlay{top:var(--band-height)}
+}
+
+/* Wider narrow viewports: ensure enough reserve for band between 300 and 420px */
+@media (max-width:420px) and (min-width:300px) {
+  :root{ --band-height:52px; }
+  .hero-overlay{top:var(--band-height)}
+  .hero-content{margin-top:calc(var(--band-height) + 8px)}
+}
+
+/* Extra tiny devices */
+@media (max-width:320px) {
+  .hero-content-wrapper{padding:1rem 0}
+  .hero-content h1{font-size:0.95rem}
+  .hero-content .sub{font-size:0.85rem}
+  .hero-image img{height:140px}
+  .cta{padding:0.5rem 0.75rem; font-size:0.9rem}
+}
+
+/* Ensure floating CTA hidden on large screens */
+.floating-cta{display:none}
+@media (max-width:480px){ .floating-cta{display:inline-flex; align-items:center; justify-content:center} }
+
+/* Very small and low-res device tweaks */
+@media (max-width:360px) {
+  /* fluid typography for headings */
+  .hero-content h1{font-size: clamp(18px, 4.6vw, 20px)}
+  .hero-content .sub{font-size: clamp(13px, 3.2vw, 14px)}
+  .services h2{font-size:18px}
+  .service-card h3{font-size:15px}
+  .contact-form label{font-size:14px}
+
+  /* reduce hero image to save bandwidth on low-res devices */
+  .hero img{height:120px; object-position:center 20%}
+
+  /* single column gallery to reduce layout complexity */
+  .gallery-grid{grid-template-columns:1fr}
+
+  /* simplify paddings and smaller icons */
+  .container{padding:0.6rem}
+  .service-card .icon{width:44px; height:44px}
 }

@@ -88,22 +88,49 @@
 
   // Expand/collapse with accessibility
   var buttons = document.querySelectorAll('.service-card .more');
-  buttons.forEach(function(btn, index){
-    var detailsId = 'service' + (index + 1) + '-details';
+  buttons.forEach(function(btn){
+    // find corresponding more-content within the same card
+    var card = btn.closest('.service-card');
+    var content = card.querySelector('.more-content');
+    if (!content) return;
+
+    // ensure each content has an id for aria-controls
+    if (!content.id) {
+      content.id = 'svc-' + Math.random().toString(36).slice(2,8);
+    }
     btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-controls', detailsId);
+    btn.setAttribute('aria-controls', content.id);
+
+    function closeOtherCards() {
+      // close other open cards for accordion-like behavior on narrow screens
+      var openCards = document.querySelectorAll('.service-card.open');
+      openCards.forEach(function(openCard){
+        if (openCard === card) return;
+        openCard.classList.remove('open');
+        var otherContent = openCard.querySelector('.more-content');
+        var otherBtn = openCard.querySelector('.more');
+        if (otherContent) otherContent.style.maxHeight = null;
+        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        if (otherContent) otherContent.setAttribute('aria-hidden', 'true');
+      });
+    }
 
     btn.addEventListener('click', function(){
-      var card = btn.closest('.service-card');
       var title = card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'Hizmet';
-      var content = card.querySelector('.more-content');
       var isOpen = card.classList.toggle('open');
+
+      // On small screens, behave like an accordion
+      if (window.innerWidth <= 860 && isOpen) closeOtherCards();
 
       btn.setAttribute('aria-expanded', String(isOpen));
       content.setAttribute('aria-hidden', String(!isOpen));
 
+      // safe maxHeight toggle
       if (isOpen) {
-        content.style.maxHeight = content.scrollHeight + 'px';
+        // allow a short timeout for browser to paint and measure
+        requestAnimationFrame(function(){
+          try { content.style.maxHeight = content.scrollHeight + 'px'; } catch(e) { content.style.maxHeight = '240px'; }
+        });
       } else {
         content.style.maxHeight = null;
       }

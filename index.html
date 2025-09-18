@@ -43,17 +43,23 @@
       </div>
     </div>
   </header>
-  <div class="hero">
-    <img src="assets/images/david-hofmann-T8vNEq4IRqM-unsplash.jpg" alt="Hurda ve metal geri dönüşüm" width="1600" height="800" />
-    <div class="hero-overlay container">
-      <div class="hero-content">
-        <h1>Karabük'ün Güvenilir Hurda Alım ve Metal Geri Dönüşüm Merkezi</h1>
-        <p class="sub">Hızlı alım, adil fiyatlandırma ve çevreye duyarlı süreçlerle hurda materyallerinizi dönüştürüyoruz.</p>
-        <div class="hero-ctas">
-          <a class="cta primary" href="#iletisim">Teklif Al</a>
-          <a class="cta secondary" href="#services">Hizmetlerimiz</a>
+  <div class="hero-section">
+    <!-- Hero content in dark band for mobile -->
+    <div class="hero-content-wrapper">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Karabük'ün Güvenilir Hurda Alım ve Metal Geri Dönüşüm Merkezi</h1>
+          <p class="sub">Hızlı alım, adil fiyatlandırma ve çevreye duyarlı süreçlerle hurda materyallerinizi dönüştürüyoruz.</p>
+          <div class="hero-ctas">
+            <a class="cta primary" href="#iletisim">Teklif Al</a>
+            <a class="cta secondary" href="#services">Hizmetlerimiz</a>
+          </div>
         </div>
       </div>
+    </div>
+    <!-- Hero image below content on mobile -->
+    <div class="hero-image">
+      <img src="assets/images/david-hofmann-T8vNEq4IRqM-unsplash.jpg" alt="Hurda ve metal geri dönüşüm" width="1600" height="800" loading="lazy" fetchpriority="low" />
     </div>
   </div>
 
@@ -306,5 +312,8 @@
   <script src="js/main.js" defer></script>
   <!-- Screen-reader live region for announcements -->
   <div id="sr-announcer" aria-live="polite" aria-atomic="true" style="position:fixed; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;"></div>
+  <!-- Mobile floating CTA -->
+  <a href="#iletisim" class="floating-cta" aria-label="Teklif Al">Teklif Al</a>
+  <!-- Note: images are set to lazy-load to reduce bandwidth on low-res devices -->
 </body>
 </html>

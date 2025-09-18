@@ -2,13 +2,9 @@ Class Metal & Hurdacılık — Karabük
 
 Bu küçük statik landing sayfası, Karabük merkezli Class Metal & Hurdacılık şirketi için hazırlanmıştır.
 
-Yerel olarak çalıştırmak için:
+Yerel önizleme için:
 
-```bash
-cd /Users/mc/class/web
-python3 -m http.server 8000
-# sonra tarayıcıda http://localhost:8000
-```
+Klasördeki `index.html` dosyasını bir tarayıcıda açabilir veya tercih ettiğiniz herhangi bir statik sunucu / geliştirme aracını (Live Server, vite, serve vb.) kullanabilirsiniz.
 
 Dosyalar:
 - `index.html` — Ana sayfa
