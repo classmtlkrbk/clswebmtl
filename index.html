@@ -239,40 +239,67 @@
 
     <section id="iletisim" class="contact container">
       <h2>İletişim</h2>
-      <p>Teklif alın veya hurda satışı için randevu oluşturun.</p>
-      <div class="contact-grid">
-        <div>
-          <strong>Adres</strong>
-          <p>Kemaloyman mevki, Hurdacılar sitesi no:14<br>78000 Kale/Merkez/Karabük</p>
+      <p>Teklif alın, hurda satışı için randevu oluşturun veya sorularınızı bize iletin.</p>
+      <div class="contact-layout">
+        <div class="contact-info-cards" aria-label="İletişim bilgileri">
+          <div class="c-card">
+            <div class="c-card-head">
+              <span class="c-card-icon" aria-hidden="true">📍</span>
+              <strong>Adres</strong>
+            </div>
+            <p class="c-card-body">Organize Sanayi Bölgesi,<br>organize sanayi yolu caddesi no:10/1<br>78000 Kale/Merkez/Karabük</p>
+            <p class="c-card-actions"><a target="_blank" rel="noopener" href="https://maps.google.com/?q=Class+Metal+Karabük+Organize+Sanayi+Bölgesi" class="mini-btn" aria-label="Haritada aç (yeni sekme)">Haritada Aç</a></p>
+          </div>
+          <div class="c-card">
+            <div class="c-card-head">
+              <span class="c-card-icon" aria-hidden="true">📞</span>
+              <strong>Telefon</strong>
+            </div>
+            <ul class="c-card-list">
+              <li><a class="tel-link" href="tel:+905358412273" data-action="call" data-person="Ersin">Ersin Yılankaya: 0535 841 22 73</a></li>
+              <li><a class="tel-link" href="tel:+905446107858" data-action="call" data-person="Mustafa">Mustafa Yılankaya: 0544 610 78 58</a></li>
+            </ul>
+            <div class="quick-actions" aria-label="Hızlı eylemler">
+              <a class="quick-btn" href="https://wa.me/905358412273" target="_blank" rel="noopener" aria-label="WhatsApp Ersin">WhatsApp</a>
+              <a class="quick-btn alt" href="sms:+905358412273" aria-label="SMS gönder">SMS</a>
+            </div>
+          </div>
+          <div class="c-card">
+            <div class="c-card-head">
+              <span class="c-card-icon" aria-hidden="true">✉️</span>
+              <strong>E-posta</strong>
+            </div>
+            <p class="c-card-body"><a href="mailto:info@classmetalrecycling.com">info@classmetalrecycling.com</a></p>
+            <p class="c-card-note">Genellikle aynı iş günü içinde dönüş yapıyoruz.</p>
+          </div>
         </div>
-        <div>
-          <strong>Telefon</strong>
-          <p>
-            <a href="tel:+905358412273">Ersin Yılankaya: 0535 841 22 73</a><br>
-            <a href="tel:+905446107858">Mustafa Yılankaya: 0544 610 78 58</a>
-          </p>
-        </div>
-        <div>
-          <strong>E-posta</strong>
-          <p><a href="mailto:info@classmetalrecycling.com">info@classmetalrecycling.com</a></p>
+        <div class="contact-form-wrap">
+          <form class="contact-form" action="#" novalidate aria-describedby="cf-note" id="contactForm">
+            <div class="field-row">
+              <label>İsim
+                <input type="text" name="name" autocomplete="name" required>
+              </label>
+              <label>Telefon / E-posta
+                <input type="text" name="contact" autocomplete="tel" required>
+              </label>
+            </div>
+            <label>Mesaj
+              <textarea name="message" rows="4" required minlength="10" maxlength="1200"></textarea>
+            </label>
+            <!-- Honeypot -->
+            <div class="hp-field" aria-hidden="true">
+              <label>Website (boş bırakın)
+                <input type="text" name="website" tabindex="-1" autocomplete="off">
+              </label>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="submit-btn">Gönder</button>
+              <span class="sending" hidden>Gönderiliyor...</span>
+            </div>
+            <p id="cf-note" class="privacy-note">Bu form demo amaçlıdır; gönderimler kaydedilmez. Telefon veya WhatsApp ile daha hızlı dönüş alabilirsiniz.</p>
+          </form>
         </div>
       </div>
-
-      <form class="contact-form" action="#" onsubmit="alert('Form gönderildi! (demo)'); return false;">
-        <label>
-          İsim
-          <input type="text" name="name" required>
-        </label>
-        <label>
-          Telefon / E-posta
-          <input type="text" name="contact" required>
-        </label>
-        <label>
-          Mesaj
-          <textarea name="message" rows="4" required></textarea>
-        </label>
-        <button type="submit">Gönder</button>
-      </form>
     </section>
 
     <section class="faq container">
@@ -324,7 +351,7 @@
     "telephone": ["+905358412273", "+905446107858"],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Kemaloyman mevki, Hurdacılar sitesi no:14",
+      "streetAddress": "Organize Sanayi Bölgesi, organize sanayi yolu caddesi no:10/1",
       "addressLocality": "Kale",
       "addressRegion": "Karabük",
       "postalCode": "78000",

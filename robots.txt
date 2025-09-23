@@ -1,3 +1,12 @@
+# robots.txt for https://classmetalrecycling.com/
+# Purpose: indicate allowed crawling paths & sitemap location
+
 User-agent: *
 Allow: /
-Sitemap: https://example.com/sitemap.xml
+# Disallow (none for now) - example:
+# Disallow: /admin/
+
+# Crawl-delay can be added if server load becomes an issue (commented out)
+# Crawl-delay: 5
+
+Sitemap: https://classmetalrecycling.com/sitemap.xml
